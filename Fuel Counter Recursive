@@ -1,0 +1,20 @@
+def calculate_fuel(mass):
+
+  fuel = (mass//3)-2
+
+  if fuel <= 0:
+    return 0
+  else:
+    return calculate_fuel(fuel)+ fuel 
+
+mass_data = open("C:/Users/sabel/Documents/Python/Advent Code/data_fuel_counter.txt")
+
+
+total_fuel = 0
+
+for mass in mass_data:
+
+  mass = int(mass)
+  total_fuel += calculate_fuel(mass)
+       
+print('The sum of the fuel requirement is', total_fuel)
