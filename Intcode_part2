@@ -1,0 +1,45 @@
+def iter_intcode(noun,verb):
+    address = [1,noun,verb,3,1,1,2,3,1,3,4,3,1,5,0,3,2,13,1,19,1,19,10,23,1,23,13,27,1,6,27,31,1,9,31,35,2,10,35,39,1,39,6,43,1,6,43,47,2,13,47,51,1,51,6,55,2,6,55,59,2,59,6,63,2,63,13,67,1,5,67,71,2,9,71,75,1,5,75,79,1,5,79,83,1,83,6,87,1,87,6,91,1,91,5,95,2,10,95,99,1,5,99,103,1,10,103,107,1,107,9,111,2,111,10,115,1,115,9,119,1,13,119,123,1,123,9,127,1,5,127,131,2,13,131,135,1,9,135,139,1,2,139,143,1,13,143,0,99,2,0,14,0]
+    #address = [1,9,10,3,2,3,11,0,99,30,40,50]
+    pointer = 0
+    
+    while pointer<len(address):
+
+        instruction = address[pointer] #instruction is the element of the list for each iteration, first iteration is 1
+        parameter1 = address[pointer+1]
+        parameter2 = address[pointer+2]
+        outputposition = address[pointer+3]
+    
+        if instruction == 99:
+            break
+    
+        elif instruction == 1:
+            add_result = address[parameter1] + address[parameter2]
+            address[outputposition] = add_result 
+    
+        elif instruction == 2:
+            mult_result = address[parameter1] * address[parameter2]
+            address[outputposition] = mult_result
+
+        else:
+            print('Something went wrong')
+     
+        pointer += 4
+    
+    return(address[0]);
+    
+print(iter_intcode(12,2)) #check that the function results in the correct value from part 1
+
+for noun in range(0,99):
+    for verb in range(0,99):
+        #print(noun,verb)
+        result = iter_intcode(noun,verb)
+        
+        if result == 19690720:
+            print(noun,verb)
+    
+answer_day2 = (100 * 38) + 92 #give as an input the printed noun and verb
+print(answer_day2)
+    
+    
+#avoid duplication of names in the code, make it readable 
